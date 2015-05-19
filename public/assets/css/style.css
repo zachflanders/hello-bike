@@ -1,0 +1,31 @@
+.bg-color{
+  background: #FFF6C5;
+}
+
+.title-color{
+  color: #FF712C !important;
+}
+
+.secondary-color{
+  color: #695D46 !important;
+}
+
+.navbar{
+  border-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.logo{
+  padding:25px;
+  padding-right:50px;
+  height: 200px;
+}
+
+.home-button{
+  border: 0px;
+  background: #A1E8D9;
+}
+
+.home-button:hover{
+  background: #96d8ca;
+}

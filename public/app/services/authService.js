@@ -20,17 +20,17 @@ angular.module('authService', [])
   };
   //Check to see if a user is logged in
   authFactory.isLoggedIn = function(){
-    if(AuthToken.getToken())
-      return true;
-    else
-      return false;
+    if(AuthToken.getToken()){
+      return true;}
+    else{
+      return false;}
   };
   //get the logged in user
   authFactory.getUser = function(){
-    if(AuthToken.getToken())
-      return $http.get('/api/me');
-    else
-      return $q.reject({message: 'User has no token.'});
+    if(AuthToken.getToken()){
+      return $http.get('/api/me', {cache: true});}
+    else{
+      return $q.reject({message: 'User has no token.'});}
   };
 
   return authFactory;
@@ -68,8 +68,8 @@ angular.module('authService', [])
 
   interceptorFactory.request = function(config){
     var token = AuthToken.getToken();
-    if (token)
-      config.headers['x-access-token'] = token;
+    if (token){
+      config.headers['x-access-token'] = token;}
 
     return config;
   };
