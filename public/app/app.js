@@ -1,6 +1,8 @@
-angular.module('bikeApp',[])
-  .controller('mainController', function(){
-    var vm = this;
-    vm.message = "hello there.";
-    
-  });
+angular.module('bikeApp',[
+  'ngAnimate',
+  'app.routes',
+  'authService',
+  'mainCtrl',
+  'userCtrl',
+  'userService'
+]);
