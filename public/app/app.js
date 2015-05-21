@@ -1,5 +1,8 @@
 angular.module('bikeApp',[
+  'ngAnimate',
   'app.routes',
   'authService',
-  'mainCtrl'
+  'mainCtrl',
+//  'userCtrl',
+//  'userService'
 ]);

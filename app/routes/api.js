@@ -24,7 +24,7 @@ module.exports = function(app, express) {
         if(!validPassword){
           res.json({
             success: false,
-            message: 'Authentication failed. Incorrect Password.'
+            message: 'Login Failed. Incorrect Password.'
           });
         }else{
             var token = jwt.sign({

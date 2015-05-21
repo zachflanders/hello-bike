@@ -4,14 +4,23 @@
   <meta charset='UTF-8'>
   <title>Hello bike</title>
   <base href='/'>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel='stylesheet' href='assets/libs/bootstrap/dist/css/bootstrap.min.css'>
   <link rel='stylesheet' href='assets/libs/animate.css/animate.min.css'>
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
 <body  ng-app='bikeApp' ng-controller='mainController as main'>
 
-  <nav class="navbar navbar-default navbar-static-top bg-color">
+  <nav class="navbar navbar-default navbar-static-top bg-color" ng-if="main.loggedIn">
     <div class="container">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand"><i class='fa fa-bicycle'></i> Hello Bike.</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
+        <li ng-if="main.loggedIn" class="navbar-text">Hello, {{ main.user.name }}.</li>
+        <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()">Logout</a></li>
+      </ul>
 
     </div>
   </nav>
@@ -19,10 +28,11 @@
     <div ng-view>
 
     </div>
-
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
+  <script src = 'assets/libs/jquery/dist/jquery.min.js'></script>
+  <script src = 'assets/libs/bootstrap/dist/js/bootstrap.min.js'></script>
+  <script src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+	<script src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
+	<script src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
   <script src = 'app/controllers/mainCtrl.js'></script>
   <script src = 'app/services/authService.js'></script>
   <script src = 'app/app.js'></script>

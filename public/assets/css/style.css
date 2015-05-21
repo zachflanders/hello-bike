@@ -26,6 +26,6 @@
   background: #A1E8D9;
 }
 
-.home-button:hover{
+.home-button:hover, .home-button:active, .home-button:focus {
   background: #96d8ca;
 }
