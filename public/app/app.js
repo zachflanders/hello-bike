@@ -1,8 +1,13 @@
 angular.module('bikeApp',[
-  'ngAnimate',
+ 'ngAnimate',
   'app.routes',
   'authService',
   'mainCtrl',
-//  'userCtrl',
-//  'userService'
-]);
+  'userCtrl',
+ 'userService'
+])
+
+.config(function($httpProvider) {
+// attach our auth interceptor to the http requests
+  $httpProvider.interceptors.push('AuthInterceptor');
+});

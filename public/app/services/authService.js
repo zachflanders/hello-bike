@@ -63,7 +63,7 @@ angular.module('authService', [])
 })
 
 //Factory for integrating token into requests
-.factory('AuthInterceptorFactory',function($q, $location, AuthToken){
+.factory('AuthInterceptor',function($q, $location, AuthToken){
   var interceptorFactory = {};
 
   interceptorFactory.request = function(config){
