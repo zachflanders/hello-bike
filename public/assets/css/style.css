@@ -29,3 +29,7 @@
 .home-button:hover, .home-button:active, .home-button:focus {
   background: #96d8ca;
 }
+
+.navbar-brand, .navbar-text, .nav a{
+  color: #695D46 !important;
+}

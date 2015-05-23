@@ -4,7 +4,7 @@ angular.module('bikeApp',[
   'authService',
   'mainCtrl',
   'userCtrl',
- 'userService'
+  'userService'
 ])
 
 .config(function($httpProvider) {
