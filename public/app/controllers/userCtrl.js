@@ -28,6 +28,7 @@ angular.module('userCtrl',['userService'])
   vm.type = 'create';
   // function to create a user
   vm.saveUser = function() {
+    console.log(vm.userData);
     vm.processing = true;
     // clear the message
     vm.message = '';
@@ -41,3 +42,21 @@ angular.module('userCtrl',['userService'])
       });
   };
 })
+.controller('userEditController',function($routeParams, User){
+  var vm=this;
+  vm.type='edit';
+  User.get($routeParams.user_id)
+    .success(function(data){
+      vm.userData = data;
+    });
+  vm.saveUser = function(){
+    vm.processing=true;
+    vm.message = '';
+    User.update($routeParams.user_id, vm.userData)
+      .success(function(data){
+        vm.processing = false;
+        vm.userData = {};
+        vm.message = data.message;
+      });
+  };
+});
