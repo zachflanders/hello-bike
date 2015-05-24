@@ -10,6 +10,14 @@
   color: #695D46 !important;
 }
 
+.blue-txt{
+  color: #96d8ca;
+}
+
+.blue-bg{
+  background: #A1E8D9;
+}
+
 .navbar{
   border-bottom: 0px;
   margin-bottom: 0px;
