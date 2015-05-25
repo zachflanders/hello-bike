@@ -1,11 +1,11 @@
 angular.module('mapCtrl',['leaflet-directive', 'rideService'])
-  .controller('mapController', [ "$scope", "leafletData", "$http", function($scope, leafletData, $http) {
+  .controller('mapController',  function( leafletData, $http) {
             var vm = this;
             var layer;
 
             vm.type='create';
 
-            angular.extend($scope, {
+            angular.extend(vm, {
                 center: {
                     autoDiscover: true,
                     zoom: 16
@@ -15,7 +15,7 @@ angular.module('mapCtrl',['leaflet-directive', 'rideService'])
                 }
            });
            leafletData.getMap().then(function(map) {
-              var drawnItems = $scope.controls.edit.featureGroup;
+              var drawnItems = vm.controls.edit.featureGroup;
               map.on('draw:created', function (e) {
                 layer = e.layer;
                 drawnItems.addLayer(layer);
@@ -23,6 +23,7 @@ angular.module('mapCtrl',['leaflet-directive', 'rideService'])
               });
            });
            vm.saveRide = function(){
+             console.log('working');
              var latlngObj = layer._latlngs;
              var latlngArry = [];
              for(prop in latlngObj){
@@ -36,4 +37,4 @@ angular.module('mapCtrl',['leaflet-directive', 'rideService'])
 
 
            };
-       }]);
+       });
