@@ -37,19 +37,26 @@ angular.module('app.routes', ['ngRoute'])
 			controller: 'userEditController',
 			controllerAs: 'user'
 		})
-		// show all users
-		.when('/rides', {
-			templateUrl: 'app/views/pages/rides/rides-all.html',
-			controller: 'userController',
-			controllerAs: 'user'
-		})
+		// show all rides for a user
+
 
 		// form to create a new user
 		// same view as edit page
 		.when('/rides/create', {
 			templateUrl: 'app/views/pages/rides/rides-single.html',
-			controller: 'userCreateController',
-			controllerAs: 'user'
+			controller: 'rideCreateController',
+			controllerAs: 'ride'
+
+		})
+		.when('/rides/id/:ride_id', {
+			templateUrl: 'app/views/pages/rides/rides-single.html',
+			controller: 'rideEditController',
+			controllerAs: 'ride'
+		})
+		.when('/rides/:username', {
+			templateUrl: 'app/views/pages/rides/rides-all.html',
+			controller: 'rideController',
+			controllerAs: 'ride'
 		})
 
 	$locationProvider.html5Mode(true);

@@ -1,9 +1,73 @@
 <div class='container'>
-<div id='map' style='height:500px;width:100%;margin-top:15px;'></div>
+  <h2 ng-if="ride.type=='create'" class='secondary-color'>Add Ride</h2>
+  <h2 ng-if="ride.type =='edit'" class='secondary-color'>Edit Ride</h2>
+  <hr>
+<div class='row'>
+  <div class='col-md-6'>
+    <h3 class='secondary-color'>Map Your Ride</h3>
+    <hr>
+    <div id='map' style='height:500px;width:100%;margin-top:15px;'></div>
+  </div>
+  <div class='col-md-6'>
+    <h3 class='secondary-color'>Ride Details</h3>
+    <hr>
+    <form class="form-horizontal" ng-submit="ride.saveRide()">
+      <div class="form-group">
+        <label class="col-sm-12">Name This Ride</label>
+        <div class="col-sm-12">
+          <input type="text" class="form-control" ng-model="ride.rideData.name">
+        </div>
+      </div>
+
+
+<div class="form-group">
+<div class="col-sm-offset-3 col-sm-6">
+<button type="submit"
+class="btn  btn-lg btn-block blue-button" >Save Ride</button>
+<button type="submit"
+class="btn  btn-lg btn-block blue-button" ng-if="user.type == 'edit'">Update Ride</button>
+  </div>
+  </div>
+</form>
+  </div>
+</div>
 </div>
 <script>
   var map = L.map('map').setView([39.099, -94.578], 15);
   L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
+  // Initialise the FeatureGroup to store editable layers
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+
+
+// Initialise the draw control and pass it the FeatureGroup of editable layers
+var drawControl = new L.Control.Draw({
+    draw: {
+      polygon: false,
+      rectangle: false,
+      circle: false,
+      marker: false
+    },
+    edit: {
+        featureGroup: drawnItems,
+    }
+
+});
+map.addControl(drawControl);
+
+map.on('draw:created', function (e) {
+    var type = e.layerType,
+        layer = e.layer;
+    var latlngsObj = layer.getLatLngs();
+    var  latlngsArry = [];
+    for (var prop in latlngsObj ){
+      latlngsArry.push([latlngsObj[prop].lat, latlngsObj[prop].lng]);
+    }
+    console.log(latlngsArry);
+    drawnItems.addLayer(layer);
+});
+
 </script>

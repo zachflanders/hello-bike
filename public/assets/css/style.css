@@ -29,12 +29,12 @@
   height: 200px;
 }
 
-.home-button{
+.blue-button{
   border: 0px;
   background: #A1E8D9;
 }
 
-.home-button:hover, .home-button:active, .home-button:focus {
+.blue-button:hover, .blue-button:active, .blue-button:focus {
   background: #96d8ca;
 }
 
