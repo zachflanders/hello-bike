@@ -5,24 +5,14 @@
   <div class="jumbotron text-center" ng-show="ride.processing">
     <i class="fa fa-spinner fa-spin"></i> <p>Loading Rides...</p>
   </div>
-  <table class="table table-striped" ng-show="ride.rides">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Name</th>
-        <th>Route</th>
-        <th class="col-sm-2"></th>
-      </tr>
-    </thead>
-    <tbody>
+  <ul class='list-group'>
     <!-- LOOP OVER THE USERS -->
-      <tr ng-repeat="trip in ride.rides"> <td>{{ trip.username }}</td>
-        <td>{{ trip.name }}</td>
-        <td>{{ trip.route }}</td>
-        <td class="col-sm-2"><a ng-href="/rides/id/{{ trip._id }}" class="btn btn-danger">Edit</a>
-        <a href="#" ng-click="ride.deleteRide(trip._id)" class="btn btn-primary">Delete</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+      <li class='list-group-item' ng-repeat="trip in ride.rides"> <br>
+        {{ trip.username }}<br>
+        {{ trip.name }}<br>
+        {{ trip.route }}<br>
+      <a ng-href="/rides/id/{{ trip._id }}" class="btn btn-danger">Edit</a>&nbsp;
+        <a href="#" ng-click="ride.deleteRide(trip._id)" class="btn btn-primary">Delete</a><br>
+
+
 </div>

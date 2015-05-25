@@ -48,3 +48,8 @@
   -moz-animation:zoomIn 0.3s both ease;
   animation:zoomIn 0.3s both ease;
 }
+
+.angular-leaflet-map {
+            width: 100%;
+            height: 500px;
+        }

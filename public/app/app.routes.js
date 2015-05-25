@@ -44,8 +44,8 @@ angular.module('app.routes', ['ngRoute'])
 		// same view as edit page
 		.when('/rides/create', {
 			templateUrl: 'app/views/pages/rides/rides-single.html',
-			controller: 'rideCreateController',
-			controllerAs: 'ride'
+			controller: 'mapController',
+			controllerAs: 'map'
 
 		})
 		.when('/rides/id/:ride_id', {

@@ -6,8 +6,9 @@ angular.module('bikeApp',[
   'mainCtrl',
  'rideCtrl',
   'userCtrl',
+  'mapCtrl',
+  'userService',
 
-  'userService'
 ])
 
 .config(function($httpProvider) {
