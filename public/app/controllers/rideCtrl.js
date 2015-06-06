@@ -1,5 +1,5 @@
-angular.module('rideCtrl',['rideService'])
-  .controller('rideController', function(Ride){
+angular.module('rideCtrl',['leaflet-directive', 'rideService'])
+  .controller('rideController', function(Ride, leafletData){
     var vm = this;
     vm.processing = true;
     console.log('hello');
@@ -9,8 +9,24 @@ angular.module('rideCtrl',['rideService'])
         vm.processing = false;
         // bind the users that come back to vm.users
         vm.rides = data;
+        console.log(vm.rides);
 
   });
+  angular.extend(vm, {
+      center: {
+          autoDiscover: true,
+          zoom: 16
+      },
+      controls: {
+          draw: {circle: false, rectangle: false, polygon: false, marker: false}
+      },
+      polyline: {
+        marker1:{lat:39.103, lng:-94.583, focus: true}
+      }
+ });
+
+
+ //L.polyline(vm.route).addTo(map);
   vm.deleteRide =function(id){
     console.log('delete!');
     vm.processing=true;

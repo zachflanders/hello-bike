@@ -8,6 +8,7 @@
   <ul class='list-group'>
     <!-- LOOP OVER THE USERS -->
       <li class='list-group-item' ng-repeat="trip in ride.rides"> <br>
+        <leaflet center='ride.center' markers='ride.markers'></leaflet>
         {{ trip.username }}<br>
         {{ trip.name }}<br>
         {{ trip.route }}<br>
