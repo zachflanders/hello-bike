@@ -2,7 +2,7 @@ angular.module('activityCtrl',['leaflet-directive', 'activityService'])
   .controller('activityController',  function(Activity,  leafletData){
     var vm = this;
     vm.processing = true;
-    console.log('hello');
+
   // grab all the users at page load
     Activity.all() .success(function(data) {
         // when all the users come back, remove the processing variable
@@ -12,11 +12,6 @@ angular.module('activityCtrl',['leaflet-directive', 'activityService'])
 
 
   });
-
-
-
-
-
   vm.deleteActivity =function(id){
     console.log('delete!');
     vm.processing=true;
@@ -42,22 +37,17 @@ scope.$watch(attrs.mapDirective, function(value) {
 
     var string = attrs.route;
     var stringArray = string.slice(1,string.length-1);
-    console.log(stringArray, stringArray.indexOf(']'));
     var stringArray2 = [];
     while (stringArray.indexOf(']') > -1){
       stringArray2.push(stringArray.slice(1,stringArray.indexOf(']')));
       stringArray = stringArray.slice(stringArray.indexOf(']')+2, stringArray.length);
     };
-    console.log(stringArray2);
     var array = [];
     stringArray2.forEach(function(entry){
       var thing = JSON.parse("[" + entry + "]");
       array.push(thing);
     });
-    console.log(array);
-
     var div = document.getElementById(attrs.id);
-    console.log(div);
     var map = L.map(attrs.id, { zoomControl:false }).setView([51.505, -0.09], 13);
 
     // add an OpenStreetMap tile layer
@@ -72,36 +62,83 @@ scope.$watch(attrs.mapDirective, function(value) {
 }
 })
 
-.controller('activityCreateController', function(Activity) {
+.controller('activityCreateController', function(Activity, leafletData, $http, $location) {
   var vm = this;
-// variable to hide/show elements of the view // differentiates between create or edit pages
-  vm.type = 'create';
-  // function to create a user
-  vm.saveActivity = function() {
-    console.log(vm.activityData);
-    vm.processing = true;
-    // clear the message
-    vm.message = '';
-    // use the create function in the userService
-    Activity.create(vm.activityData)
-      .success(function(data) {
-        vm.processing = false;
-        // clear the form
-        vm.activityData = {};
-        vm.message = data.message;
-      });
-  };
+  var layer;
+
+
+  vm.type='create';
+
+  angular.extend(vm, {
+      center: {
+          autoDiscover: true,
+          zoom: 16
+      },
+      controls: {
+          draw: {circle: false, rectangle: false, polygon: false, marker: false}
+      }
+ });
+ leafletData.getMap().then(function(map) {
+    var drawnItems = vm.controls.edit.featureGroup;
+    map.on('draw:created', function (e) {
+      layer = e.layer;
+      drawnItems.addLayer(layer);
+      console.log(layer._latlngs)
+    });
+ });
+ vm.saveActivity = function(){
+   console.log('working');
+   var latlngObj = layer._latlngs;
+   var latlngArry = [];
+   for(prop in latlngObj){
+     latlngArry.push([latlngObj[prop].lat, latlngObj[prop].lng]);
+   }
+   vm.activityData.route = latlngArry;
+
+   vm.processing=true;
+   vm.message = '';
+  $http.post('/api/activities/', vm.activityData);
+  $location.path('/activities');
+
+
+ };
 })
-.controller('activityEditController',function($routeParams, Activity){
+.controller('activityEditController',function($routeParams, Activity, leafletData, $http, $location){
   var vm=this;
   vm.type='edit';
+  var layer;
+  console.log(vm);
   Activity.get($routeParams.activity_id)
     .success(function(data){
       console.log(data);
       vm.activityData = data;
     });
+    angular.extend(vm, {
+        center: {
+            autoDiscover: true,
+            zoom: 16
+        },
+        controls: {
+            draw: {circle: false, rectangle: false, polygon: false, marker: false}
+        }
+   });
+   leafletData.getMap().then(function(map) {
+      var drawnItems = vm.controls.edit.featureGroup;
+      map.on('draw:created', function (e) {
+        layer = e.layer;
+        drawnItems.addLayer(layer);
+        console.log(layer._latlngs)
+      });
+   });
   vm.saveActivity = function(){
     console.log('working');
+    var latlngObj = layer._latlngs;
+    var latlngArry = [];
+    for(prop in latlngObj){
+      latlngArry.push([latlngObj[prop].lat, latlngObj[prop].lng]);
+    }
+    vm.activityData.route = latlngArry;
+
     vm.processing=true;
     vm.message = '';
     Activity.update($routeParams.activity_id, vm.activityData)
@@ -109,6 +146,8 @@ scope.$watch(attrs.mapDirective, function(value) {
         vm.processing = false;
         vm.activityData = {};
         vm.message = data.message;
+
       });
+      $location.path('/activities');
   };
 });

@@ -6,7 +6,6 @@ angular.module('bikeApp',[
   'mainCtrl',
  'activityCtrl',
   'userCtrl',
-  'mapCtrl',
   'userService',
 
 ])

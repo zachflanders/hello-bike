@@ -134,6 +134,8 @@ module.exports = function(app, express) {
         activity.username = req.body.username;
         activity.name = req.body.name;
         activity.route = req.body.route;
+        activity.description = req.body.description;
+        activity.date = req.body.date;
 
         activity.save(function(err){
           if(err){
@@ -164,6 +166,8 @@ module.exports = function(app, express) {
             if(req.body.username) {activity.username = req.body.username;}
             if(req.body.name) {activity.name = req.body.name;}
             if(req.body.route){activity.route = req.body.route;}
+            if(req.body.description){activity.description = req.body.description;}
+            if(req.body.date){activity.route = req.body.date;}
             activity.save(function(err){
               if(err) {res.send(err);}
               res.json({message: 'Activity updated.'});

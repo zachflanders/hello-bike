@@ -1,17 +1,19 @@
 <div class='container'>
-  <div class="page-header">
-    <h2>Activities</h2>
+  <div >
+    <h2>Activity Feed</h2>
   </div>
   <div class="jumbotron text-center" ng-show="activity.processing">
     <i class="fa fa-spinner fa-spin"></i> <p>Loading Activities...</p>
   </div>
   <ul class='list-group'>
     <!-- LOOP OVER THE USERS -->
-      <li class='list-group-item col-md-8' ng-repeat="trip in activity.activities">
+      <li class='list-group-item col-md-12' ng-repeat="trip in activity.activities">
         <div class='row'>
-          <div class='col-md-8'>
+          <div class='col-md-6'>
+
             <h3>{{ trip.name }}</h3>
-            {{ trip.username }}
+            <h6>{{ trip.date | date: M/d/YY}}</h6>
+            <p>{{ trip.description }}</p>
 
         <a ng-href="/activities/id/{{ trip._id }}" class="btn btn-default">Edit</a>&nbsp;
           <a href="#" ng-click="activity.deleteActivity(trip._id)" class="btn btn-danger">Delete</a><br>

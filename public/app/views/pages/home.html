@@ -2,7 +2,7 @@
   <div class='text-center animated fadeIn' style='margin-top:5%;'>
     <img src="assets/img/bike.svg" class='logo'>
     <h1 class='title-color'>Hello Bike.</h1>
-    <h2 class='secondary-color'>Fun app for bike commuters.</h2>
+    <h2 class='secondary-color'>Fun app for bike commuters.</h2><br>
     <a class="btn btn-default btn-lg ghost-btn" href="/login" role="button" >LOGIN</a>
   </div>
 </div>
@@ -10,6 +10,6 @@
 
 <div ng-if='main.loggedIn'>
   <div class='container'>
-    <h2 >Activity Feed</h2>
-    <hr>
+    <h2 >Welcome, {{main.user.name}}</h2>
+
 </div>

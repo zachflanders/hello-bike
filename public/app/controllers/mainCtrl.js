@@ -14,13 +14,15 @@ angular.module('mainCtrl',[])
         });
     });
 
+    console.log(vm);
+
     vm.doLogin = function(){
       vm.processing=true;
       vm.error='';
       Auth.login(vm.loginData.username, vm.loginData.password)
         .success(function(data){
           if(data.success){
-            $location.path('/activities/' + vm.loginData.username);
+            $location.path('/activities');
           }else{
             vm.error = data.message;
           }

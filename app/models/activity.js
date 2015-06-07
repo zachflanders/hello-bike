@@ -4,7 +4,9 @@ var Schema = mongoose.Schema;
 var ActivitySchema = new Schema({
   username: String,
   name: String,
-  route: Array
+  route: Array,
+  description: String,
+  date: Date
 });
 
 
