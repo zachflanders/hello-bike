@@ -7,13 +7,21 @@
   </div>
   <ul class='list-group'>
     <!-- LOOP OVER THE USERS -->
-      <li class='list-group-item' ng-repeat="trip in activity.activities"> <br>
-        <leaflet center='activity.center' markers='activity.markers'></leaflet>
+      <li class='list-group-item' ng-repeat="trip in activity.activities">
+        <div class='row'>
+          <div class='col-md-8'>
         {{ trip.username }}<br>
         {{ trip.name }}<br>
         {{ trip.route }}<br>
-      <a ng-href="/activities/id/{{ trip._id }}" class="btn btn-danger">Edit</a>&nbsp;
-        <a href="#" ng-click="activity.deleteActivity(trip._id)" class="btn btn-primary">Delete</a><br>
+        <a ng-href="/activities/id/{{ trip._id }}" class="btn btn-danger">Edit</a>&nbsp;
+          <a href="#" ng-click="activity.deleteActivity(trip._id)" class="btn btn-primary">Delete</a><br>
+      </div>
+      <div class='col-md-4'>
+        <div id='{{trip._id}}' route='{{trip.route}}' style='height:300px; width:300px;' map-directive></div>
+      </div>
+    </div>
+      </li>
+    </ul>
 
 
 </div>

@@ -1,0 +1,14 @@
+<div id='map' style='height:400px; width:400px'></div>
+{{route}}
+<script>
+  //console.log(line);
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href=http://osm.org/copyright>OpenStreetMap</a> contributors'
+    }).addTo(map);
+    var polyline = L.polyline([
+    [51.509, -0.08],
+    [51.503, -0.06],
+    [51.51, -0.047]
+]).addTo(map);
+  </script>
