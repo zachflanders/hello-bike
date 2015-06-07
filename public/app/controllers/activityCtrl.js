@@ -58,13 +58,15 @@ scope.$watch(attrs.mapDirective, function(value) {
 
     var div = document.getElementById(attrs.id);
     console.log(div);
-    var map = L.map(attrs.id).setView([51.505, -0.09], 13);
+    var map = L.map(attrs.id, { zoomControl:false }).setView([51.505, -0.09], 13);
 
     // add an OpenStreetMap tile layer
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
     var polyline = L.polyline(array).addTo(map);
+    var bounds = polyline.getBounds();
+    map.fitBounds(bounds);
 });
 
 }
