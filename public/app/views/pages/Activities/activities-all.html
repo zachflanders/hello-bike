@@ -1,0 +1,19 @@
+<div class='container'>
+  <div class="page-header">
+    <h2>Activities</h2>
+  </div>
+  <div class="jumbotron text-center" ng-show="activity.processing">
+    <i class="fa fa-spinner fa-spin"></i> <p>Loading Activities...</p>
+  </div>
+  <ul class='list-group'>
+    <!-- LOOP OVER THE USERS -->
+      <li class='list-group-item' ng-repeat="trip in activity.activities"> <br>
+        <leaflet center='activity.center' markers='activity.markers'></leaflet>
+        {{ trip.username }}<br>
+        {{ trip.name }}<br>
+        {{ trip.route }}<br>
+      <a ng-href="/activities/id/{{ trip._id }}" class="btn btn-danger">Edit</a>&nbsp;
+        <a href="#" ng-click="activity.deleteActivity(trip._id)" class="btn btn-primary">Delete</a><br>
+
+
+</div>

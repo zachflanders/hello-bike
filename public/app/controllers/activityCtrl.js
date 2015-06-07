@@ -1,15 +1,15 @@
-angular.module('rideCtrl',['leaflet-directive', 'rideService'])
-  .controller('rideController', function(Ride, leafletData){
+angular.module('activityCtrl',['leaflet-directive', 'activityService'])
+  .controller('activityController', function(Activity, leafletData){
     var vm = this;
     vm.processing = true;
     console.log('hello');
   // grab all the users at page load
-    Ride.all() .success(function(data) {
+    Activity.all() .success(function(data) {
         // when all the users come back, remove the processing variable
         vm.processing = false;
         // bind the users that come back to vm.users
-        vm.rides = data;
-        console.log(vm.rides);
+        vm.activities = data;
+        console.log(vm.activities);
 
   });
   angular.extend(vm, {
@@ -27,55 +27,55 @@ angular.module('rideCtrl',['leaflet-directive', 'rideService'])
 
 
  //L.polyline(vm.route).addTo(map);
-  vm.deleteRide =function(id){
+  vm.deleteActivity =function(id){
     console.log('delete!');
     vm.processing=true;
-    Ride.delete(id)
+    Activity.delete(id)
       .success(function(data){
-        Ride.all()
+        Activity.all()
           .success(function(data){
             vm.processing = false;
-            vm.rides = data;
+            vm.activities = data;
           });
       });
   };
 })
-.controller('rideCreateController', function(Ride) {
+.controller('activityCreateController', function(Activity) {
   var vm = this;
 // variable to hide/show elements of the view // differentiates between create or edit pages
   vm.type = 'create';
   // function to create a user
-  vm.saveRide = function() {
-    console.log(vm.rideData);
+  vm.saveActivity = function() {
+    console.log(vm.activityData);
     vm.processing = true;
     // clear the message
     vm.message = '';
     // use the create function in the userService
-    Ride.create(vm.rideData)
+    Activity.create(vm.activityData)
       .success(function(data) {
         vm.processing = false;
         // clear the form
-        vm.rideData = {};
+        vm.activityData = {};
         vm.message = data.message;
       });
   };
 })
-.controller('rideEditController',function($routeParams, Ride){
+.controller('activityEditController',function($routeParams, Activity){
   var vm=this;
   vm.type='edit';
-  Ride.get($routeParams.ride_id)
+  Activity.get($routeParams.activity_id)
     .success(function(data){
       console.log(data);
-      vm.rideData = data;
+      vm.activityData = data;
     });
-  vm.saveRide = function(){
+  vm.saveActivity = function(){
     console.log('working');
     vm.processing=true;
     vm.message = '';
-    Ride.update($routeParams.ride_id, vm.rideData)
+    Activity.update($routeParams.activity_id, vm.activityData)
       .success(function(data){
         vm.processing = false;
-        vm.rideData = {};
+        vm.activityData = {};
         vm.message = data.message;
       });
   };

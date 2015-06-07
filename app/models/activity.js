@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var RideSchema = new Schema({
+var ActivitySchema = new Schema({
   username: String,
   name: String,
   route: Array
@@ -10,4 +10,4 @@ var RideSchema = new Schema({
 
 
 //return the model
-module.exports = mongoose.model('Ride', RideSchema);
+module.exports = mongoose.model('ActiVity', ActivitySchema);

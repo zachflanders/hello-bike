@@ -42,21 +42,21 @@ angular.module('app.routes', ['ngRoute'])
 
 		// form to create a new user
 		// same view as edit page
-		.when('/rides/create', {
-			templateUrl: 'app/views/pages/rides/rides-single.html',
+		.when('/activities/create', {
+			templateUrl: 'app/views/pages/activities/activities-single.html',
 			controller: 'mapController',
 			controllerAs: 'map'
 
 		})
-		.when('/rides/id/:ride_id', {
-			templateUrl: 'app/views/pages/rides/rides-single.html',
-			controller: 'rideEditController',
-			controllerAs: 'ride'
+		.when('/activites/id/:activity_id', {
+			templateUrl: 'app/views/pages/activities/activities-single.html',
+			controller: 'activityEditController',
+			controllerAs: 'activity'
 		})
-		.when('/rides/:username', {
-			templateUrl: 'app/views/pages/rides/rides-all.html',
-			controller: 'rideController',
-			controllerAs: 'ride'
+		.when('/activities/:username', {
+			templateUrl: 'app/views/pages/activities/activities-all.html',
+			controller: 'activityController',
+			controllerAs: 'activity'
 		})
 
 	$locationProvider.html5Mode(true);

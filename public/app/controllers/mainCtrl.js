@@ -20,7 +20,7 @@ angular.module('mainCtrl',[])
       Auth.login(vm.loginData.username, vm.loginData.password)
         .success(function(data){
           if(data.success){
-            $location.path('/rides/' + vm.loginData.username);
+            $location.path('/activities/' + vm.loginData.username);
           }else{
             vm.error = data.message;
           }

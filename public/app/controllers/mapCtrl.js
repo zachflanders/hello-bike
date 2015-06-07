@@ -1,4 +1,4 @@
-angular.module('mapCtrl',['leaflet-directive', 'rideService'])
+angular.module('mapCtrl',['leaflet-directive', 'activityService'])
   .controller('mapController',  function( leafletData, $http) {
             var vm = this;
             var layer;
@@ -22,18 +22,18 @@ angular.module('mapCtrl',['leaflet-directive', 'rideService'])
                 console.log(layer._latlngs)
               });
            });
-           vm.saveRide = function(){
+           vm.saveActivity = function(){
              console.log('working');
              var latlngObj = layer._latlngs;
              var latlngArry = [];
              for(prop in latlngObj){
                latlngArry.push([latlngObj[prop].lat, latlngObj[prop].lng]);
              }
-             vm.rideData.route = latlngArry;
+             vm.activityData.route = latlngArry;
 
              vm.processing=true;
              vm.message = '';
-            $http.post('/api/rides/', vm.rideData);
+            $http.post('/api/activities/', vm.activityData);
 
 
            };

@@ -1,5 +1,5 @@
 var User = require('../models/user');
-var Ride = require('../models/ride');
+var Activity = require('../models/activity');
 var jwt = require('jsonwebtoken');
 var config = require('../../config');
 
@@ -128,51 +128,51 @@ module.exports = function(app, express) {
       res.send(req.decoded);
     });
 
-    apiRouter.route('/rides')
+    apiRouter.route('/activities')
       .post(function(req, res){
-        var ride = new Ride();
-        ride.username = req.body.username;
-        ride.name = req.body.name;
-        ride.route = req.body.route;
+        var activity = new Activity();
+        activity.username = req.body.username;
+        activity.name = req.body.name;
+        activity.route = req.body.route;
 
-        ride.save(function(err){
+        activity.save(function(err){
           if(err){
 
               return res.send(err);
             }
 
-          res.json({message: 'ride created!'});
+          res.json({message: 'activity created!'});
         });
       })
       .get(function(req, res){
-        Ride.find(function(err,rides){
+        Activity.find(function(err,activities){
           if(err) {res.send(err);}
-          res.json(rides);
+          res.json(activities);
         });
       });
 
-      apiRouter.route('/rides/id/:ride_id')
+      apiRouter.route('/activities/id/:activity_id')
         .get(function(req, res){
-          Ride.findById(req.params.ride_id, function(err, ride){
+          Activity.findById(req.params.activity_id, function(err, activity){
             if(err) { res.send(err);}
-            res.json(ride);
+            res.json(activity);
           });
         })
         .put(function(req, res){
-          Ride.findById(req.params.ride_id, function (err, ride){
+          Activity.findById(req.params.activity_id, function (err, activity){
             if(err) {res.send(err);}
-            if(req.body.username) {ride.username = req.body.username;}
-            if(req.body.name) {ride.name = req.body.name;}
-            if(req.body.route){ride.route = req.body.route;}
-            ride.save(function(err){
+            if(req.body.username) {activity.username = req.body.username;}
+            if(req.body.name) {activity.name = req.body.name;}
+            if(req.body.route){activity.route = req.body.route;}
+            activity.save(function(err){
               if(err) {res.send(err);}
-              res.json({message: 'Ride updated.'});
+              res.json({message: 'Activity updated.'});
             });
           });
         })
         .delete(function(req, res){
-          Ride.remove({
-            _id: req.params.ride_id
+          Activity.remove({
+            _id: req.params.activity_id
           }, function(err, user){
             if(err) {res.send(err);}
             res.json({message:'Successfully deleted.'});

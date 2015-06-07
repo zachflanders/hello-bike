@@ -31,7 +31,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
         <li ng-if="main.loggedIn"><a href="/users"><i class="fa fa-users"></i> Manage Users</a></li>
-        <li ng-if="main.loggedIn"><a href="/rides/create"><i class="fa fa-plus-square-o"></i> Add Ride</a></li>
+        <li ng-if="main.loggedIn"><a href="/activities/create"><i class="fa fa-plus-square-o"></i> Add Activity</a></li>
         <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()"><i class="fa fa-sign-out"></i> Logout</a></li>
       </ul>
     </div>
@@ -48,11 +48,11 @@
     <script src = "//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
     <script src = 'app/controllers/mainCtrl.js'></script>
     <script src = 'app/controllers/userCtrl.js'></script>
-    <script src = 'app/controllers/rideCtrl.js'></script>
+    <script src = 'app/controllers/activityCtrl.js'></script>
     <script src = 'app/controllers/mapCtrl.js'></script>
     <script src = 'app/services/authService.js'></script>
     <script src = 'app/services/userService.js'></script>
-    <script src = 'app/services/rideService.js'></script>
+    <script src = 'app/services/activityService.js'></script>
     <script src = 'app/app.js'></script>
     <script src = 'app/app.routes.js'></script>
     <script src = 'assets/libs/leaflet-dist/leaflet.js'></script>
