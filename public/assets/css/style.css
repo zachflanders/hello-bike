@@ -46,6 +46,17 @@
   color: #FFFFFF !important;
 }
 
+.navbar-inverse .navbar-toggle {
+  border: none;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: #2980b9;
+}
+
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border: none;
+}
 
 .show-hide-message.ng-hide-remove {
   -webkit-animation:zoomIn 0.3s both ease;
@@ -77,4 +88,9 @@
         	border-radius:         0;
 
 
+}
+
+html, body{
+  height:100%;
+  font-family: 'Roboto', sans-serif;
 }

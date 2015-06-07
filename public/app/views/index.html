@@ -10,23 +10,31 @@
   <link rel='stylesheet' href='assets/libs/leaflet-draw/dist/leaflet.draw.css'>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <link rel='stylesheet' href='assets/css/style.css'>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900' rel='stylesheet' type='text/css'>
+
 
 </head>
 <body  ng-app='bikeApp' ng-controller='mainController as main' style='height:100%;'>
 
-  <nav class="navbar navbar-default navbar-static-top bg-color" ng-if="main.loggedIn">
+  <nav class="navbar navbar-inverse navbar-static-top bg-color" ng-if="main.loggedIn">
     <div class="container">
       <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
         <a href="/" class="navbar-brand"><i class='fa fa-bicycle'></i><span> Hello Bike.</span></a>
       </div>
+      <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
         <li ng-if="!main.loggedIn"><a href="/login">Login</a></li>
-        <li ng-if="main.loggedIn" class="navbar-text">Hello {{ main.user.name }}.</li>
         <li ng-if="main.loggedIn"><a href="/users"><i class="fa fa-users"></i> Manage Users</a></li>
         <li ng-if="main.loggedIn"><a href="/rides/create"><i class="fa fa-plus-square-o"></i> Add Ride</a></li>
         <li ng-if="main.loggedIn"><a href="#" ng-click="main.doLogout()"><i class="fa fa-sign-out"></i> Logout</a></li>
       </ul>
-
+    </div>
     </div>
   </nav>
 
